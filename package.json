@@ -4,7 +4,8 @@
   "description": "Implement for Nep Mirror Protocol V1 with proxy storage",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "gen:schema": "typescript-json-schema src/config/type.ts Config -o schema/config.json"
   },
   "author": "Cno",
   "license": "MPL-2.0",
@@ -22,6 +23,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
     "prettier": "3.1.1",
-    "tsx": "^4.7.0"
+    "tsx": "^4.7.0",
+    "typescript-json-schema": "^0.62.0"
   }
 }

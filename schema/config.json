@@ -1,0 +1,98 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "allOf": [
+        {
+            "$ref": "#/definitions/MirrorHello"
+        },
+        {
+            "properties": {
+                "proxy": {
+                    "properties": {
+                        "rootUrl": {
+                            "type": "string"
+                        },
+                        "typeKey": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    ],
+    "definitions": {
+        "Locale": {
+            "enum": [
+                "Multi",
+                "en-US",
+                "zh-CN"
+            ],
+            "type": "string"
+        },
+        "MirrorHello": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "locale": {
+                    "$ref": "#/definitions/Locale"
+                },
+                "maintainer": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "property": {
+                    "properties": {
+                        "deploy_regin": {
+                            "$ref": "#/definitions/Locale"
+                        },
+                        "proxy_storage": {
+                            "const": true,
+                            "type": "boolean"
+                        },
+                        "sync_interval": {
+                            "type": "number"
+                        },
+                        "upload_bandwidth": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "protocol": {
+                    "const": "1.0.0",
+                    "type": "string"
+                },
+                "root_url": {
+                    "type": "string"
+                },
+                "service": {
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "$ref": "#/definitions/ServiceKeys"
+                            },
+                            "path": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "ServiceKeys": {
+            "enum": [
+                "EPT_TOOLCHAIN",
+                "PKG_SOFTWARE"
+            ],
+            "type": "string"
+        }
+    }
+}
+
