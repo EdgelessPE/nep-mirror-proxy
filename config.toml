@@ -1,0 +1,16 @@
+name = "official"
+locale = "zh-CN"
+description = "Official nep mirror"
+maintainer = "Edgeless"
+protocol = "1.0.1"
+root_url = "mirror.nep.edgeless.top"
+
+[property]
+deploy_region = "zh-CN"
+proxy_storage = true
+upload_bandwidth = 1000
+sync_interval = 0
+
+service = [
+    { key = "PKG_SOFTWARE", path = "/nep" }
+]
