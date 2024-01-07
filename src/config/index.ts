@@ -5,7 +5,7 @@ import TOML from "@iarna/toml";
 import Ajv from "ajv";
 const ajv = new Ajv();
 
-export function readConfig(): Result<Config, string> {
+function readConfig(): Result<Config, string> {
   const text = fs.readFileSync("config.toml").toString();
   const obj = TOML.parse(text);
   const schemaText = fs.readFileSync("schema/config.json").toString();
@@ -19,3 +19,5 @@ export function readConfig(): Result<Config, string> {
   }
   return new Ok(obj as unknown as Config);
 }
+
+export const config = readConfig().unwrap();
