@@ -1,11 +1,28 @@
 import Koa from "koa";
-const app = new Koa();
+import Router from "koa-router";
+import { serviceHello } from "./service";
+import { Result } from "ts-results";
 
 const PORT = 3000;
 
-app.use(async (ctx) => {
-  ctx.body = "Hello World";
+const app = new Koa();
+const router = new Router();
+
+router.get("/hello", serviceHello);
+
+// Result 类型中间件
+app.use(async (ctx, next) => {
+  const result: Result<unknown, string> = await next();
+  if (result.ok) {
+    ctx.body = result.val;
+  } else {
+    ctx.response.status = 500;
+    ctx.body = {
+      msg: result.val,
+    };
+  }
 });
+app.use(router.routes());
 
 console.log(`Listening on port ${PORT}`);
 app.listen(PORT);
