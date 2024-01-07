@@ -1,6 +1,6 @@
 import Koa from "koa";
 import Router from "koa-router";
-import { serviceHello } from "./service";
+import { serviceHello } from "./service/hello";
 import { Result } from "ts-results";
 
 const PORT = 3000;
