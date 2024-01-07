@@ -2,7 +2,7 @@ name = "official"
 locale = "zh-CN"
 description = "Official nep mirror"
 maintainer = "Edgeless"
-protocol = "1.0.1"
+protocol = "1.0.0"
 root_url = "mirror.nep.edgeless.top"
 
 [property]
