@@ -9,7 +9,7 @@ const REGISTRY: ProxyRegistry[] = [
   },
 ];
 
-export function findController(
+export function createController(
   key: string,
   ctx: ControllerCtx,
 ): Result<IProxyController, string> {
