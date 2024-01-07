@@ -1,0 +1,24 @@
+{
+  "name": "nep-mirror-proxy",
+  "version": "1.0.0",
+  "description": "Implement for Nep Mirror Protocol V1 with proxy storage",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "author": "Cno",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "koa": "^2.15.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.12",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "prettier": "3.1.1",
+    "tsx": "^4.7.0"
+  }
+}
