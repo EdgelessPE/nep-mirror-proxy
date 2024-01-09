@@ -15,13 +15,20 @@ router.get(API_PKG_SOFTWARE, servicePkgSoftware);
 
 // Result 类型中间件
 app.use(async (ctx, next) => {
-  const result: Result<unknown, string> = await next();
-  if (result.ok) {
-    ctx.body = result.val;
+  const result: Result<unknown, string> | undefined = await next();
+  if (result) {
+    if (result.ok) {
+      ctx.body = result.val;
+    } else {
+      ctx.response.status = 500;
+      ctx.body = {
+        msg: result.val,
+      };
+    }
   } else {
-    ctx.response.status = 500;
+    ctx.response.status = 404;
     ctx.body = {
-      msg: result.val,
+      msg: "Error:Service matching this path not found",
     };
   }
 });
