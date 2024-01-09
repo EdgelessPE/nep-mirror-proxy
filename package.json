@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "gen:schema": "typescript-json-schema src/config/type.ts Config -o schema/config.json"
+    "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json"
   },
   "author": "Cno",
   "license": "MPL-2.0",

@@ -5,12 +5,16 @@ maintainer = "Edgeless"
 protocol = "1.0.0"
 root_url = "mirror.nep.edgeless.top"
 
+service = [
+    { key = "PKG_SOFTWARE", path = "/nep" }
+]
+
 [property]
 deploy_region = "zh-CN"
 proxy_storage = true
 upload_bandwidth = 1000
 sync_interval = 0
 
-service = [
-    { key = "PKG_SOFTWARE", path = "/nep" }
-]
+[proxy]
+typeKey = "AList"
+rootUrl = "https://zfile.edgeless.top"

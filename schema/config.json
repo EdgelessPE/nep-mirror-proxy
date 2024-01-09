@@ -15,9 +15,16 @@
                             "type": "string"
                         }
                     },
+                    "required": [
+                        "rootUrl",
+                        "typeKey"
+                    ],
                     "type": "object"
                 }
             },
+            "required": [
+                "proxy"
+            ],
             "type": "object"
         }
     ],
@@ -46,7 +53,7 @@
                 },
                 "property": {
                     "properties": {
-                        "deploy_regin": {
+                        "deploy_region": {
                             "$ref": "#/definitions/Locale"
                         },
                         "proxy_storage": {
@@ -60,6 +67,12 @@
                             "type": "number"
                         }
                     },
+                    "required": [
+                        "deploy_region",
+                        "proxy_storage",
+                        "sync_interval",
+                        "upload_bandwidth"
+                    ],
                     "type": "object"
                 },
                 "protocol": {
@@ -79,11 +92,25 @@
                                 "type": "string"
                             }
                         },
+                        "required": [
+                            "key",
+                            "path"
+                        ],
                         "type": "object"
                     },
                     "type": "array"
                 }
             },
+            "required": [
+                "description",
+                "locale",
+                "maintainer",
+                "name",
+                "property",
+                "protocol",
+                "root_url",
+                "service"
+            ],
             "type": "object"
         },
         "ServiceKeys": {
