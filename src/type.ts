@@ -24,14 +24,16 @@ export interface MirrorHello {
 }
 
 export interface MirrorEptToolchain {
-  releases: {
-    name: string;
-    version: string;
-    url: string;
-    size: number;
-    timestamp: number;
-    integrity: string;
-  }[];
+  releases: MirrorEptToolchainRelease[];
+}
+
+export interface MirrorEptToolchainRelease {
+  name: string;
+  version: string;
+  url: string;
+  size: number;
+  timestamp: number;
+  integrity: string;
 }
 
 export interface MirrorPkgSoftware {
@@ -41,14 +43,16 @@ export interface MirrorPkgSoftware {
     string,
     {
       name: string;
-      releases: {
-        fileName: string;
-        size: number;
-        timestamp: number;
-        integrity: string;
-        meta?: unknown;
-        permissions?: unknown[];
-      }[];
+      releases: MirrorPkgSoftwareRelease[];
     }[]
   >;
+}
+
+export interface MirrorPkgSoftwareRelease {
+  fileName: string;
+  size: number;
+  timestamp: number;
+  integrity: string;
+  meta?: never;
+  permissions?: never[];
 }
