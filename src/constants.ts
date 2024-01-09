@@ -1,8 +1,9 @@
 export const CACHE_INTERVAL = 60 * (60 * 1000);
 
-export const API_HELLO = "/api/hello";
-export const API_EPT_TOOLCHAIN = "/api/ept/toolchain";
-export const API_PKG_SOFTWARE = "/api/pkg/software";
-export const REDIRECT_ROUTE_PATH = "/api/redirect";
-export const REDIRECT_URL_TEMPLATE =
-  "/api/redirect?path={baseUrl}/{scope}/{software}/{fileName}";
+// 定义服务路径
+const API_PREFIX = "/api";
+export const API_HELLO = `${API_PREFIX}/hello`;
+export const API_EPT_TOOLCHAIN = `${API_PREFIX}/ept/toolchain`;
+export const API_PKG_SOFTWARE = `${API_PREFIX}/pkg/software`;
+export const REDIRECT_ROUTE_PATH = `${API_PREFIX}/redirect`;
+export const REDIRECT_URL_TEMPLATE = `${API_PREFIX}/redirect?path={baseUrl}/{scope}/{software}/{fileName}`;
