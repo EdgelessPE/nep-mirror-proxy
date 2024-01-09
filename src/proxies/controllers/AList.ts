@@ -77,7 +77,9 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
   ): Promise<Result<FileNode[], string>> {
     const absPath = join(relativePath);
     const data = await promise2Result(fsList(absPath, ctx));
-    if (data.err) return data;
+    if (data.err) {
+      return data;
+    }
     const axiosRes = data.unwrap().data;
     if (axiosRes.code !== 200) {
       return new Err(
@@ -86,7 +88,9 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
     }
     const res: FileNode[] = axiosRes.data.content.map(
       ({ name, modified, size, is_dir, sign }) => {
-        if (!is_dir) setAListSign(path_join(absPath, name), sign);
+        if (!is_dir) {
+          setAListSign(path_join(absPath, name), sign);
+        }
         return {
           path: path_join(relativePath, name),
           name,
@@ -106,7 +110,9 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
       absPath: string,
     ): Promise<Result<string, string>> => {
       const data = await promise2Result(fsGet(absPath, ctx));
-      if (data.err) return data;
+      if (data.err) {
+        return data;
+      }
       const axiosRes = data.unwrap().data;
       if (axiosRes.code !== 200) {
         return new Err(

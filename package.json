@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "lint": "eslint --fix src/**/*"
   },
   "author": "Cno",
   "license": "MPL-2.0",
