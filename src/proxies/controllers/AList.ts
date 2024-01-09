@@ -66,7 +66,7 @@ async function fsGet(p: string, { rootUrl }: ControllerCtx) {
 }
 
 export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
-  const join = (p: string) => path.join(ctx.basePath, p);
+  const join = (p: string) => path.join(ctx.basePath, p).replace(/\\/g, "/");
   async function init() {
     return new Ok(undefined);
   }
@@ -76,11 +76,13 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
     if (data.err) return data;
     const axiosRes = data.unwrap().data;
     if (axiosRes.code !== 200) {
-      return new Err(`Error:AList api returned code ${axiosRes.code}`);
+      return new Err(
+        `Error:AList api returned code ${axiosRes.code} when reading dir ${p}`,
+      );
     }
     const res: FileNode[] = axiosRes.data.content.map(
-      ({ name, modified, size, is_dir, sign }) => ({
-        path: path.join(p, name),
+      ({ name, modified, size, is_dir }) => ({
+        path: path.join(_p, name),
         name,
         size,
         timestamp: dayjs(modified).unix(),
@@ -95,7 +97,9 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
     if (data.err) return data;
     const axiosRes = data.unwrap().data;
     if (axiosRes.code !== 200) {
-      return new Err(`Error:AList api returned code ${axiosRes.code}`);
+      return new Err(
+        `Error:AList api returned code ${axiosRes.code} when fetching file ${p}`,
+      );
     }
     const url = `${path.join(ctx.rootUrl, "d", p)}?sign=${axiosRes.data.sign}`;
     return new Ok(url);

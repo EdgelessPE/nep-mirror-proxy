@@ -2,7 +2,8 @@ import Koa from "koa";
 import Router from "koa-router";
 import { serviceHello } from "./service/hello";
 import { Result } from "ts-results";
-import { API_HELLO } from "./constants";
+import { API_HELLO, API_PKG_SOFTWARE } from "./constants";
+import { fetchPkgSoftware } from "./service/pkg_software";
 
 const PORT = 3000;
 
@@ -10,6 +11,7 @@ const app = new Koa();
 const router = new Router();
 
 router.get(API_HELLO, serviceHello);
+router.get(API_PKG_SOFTWARE, fetchPkgSoftware);
 
 // Result 类型中间件
 app.use(async (ctx, next) => {

@@ -20,7 +20,6 @@ export async function fetchPkgSoftware(): Promise<
   Result<MirrorPkgSoftware, string>
 > {
   // 初始化读函数
-  console.log(JSON.stringify(config, null, 2));
   const serviceDefNode = config.service.find((n) => n.key === "PKG_SOFTWARE");
   if (!serviceDefNode) {
     return new Err(
@@ -77,10 +76,12 @@ export async function fetchPkgSoftware(): Promise<
     return new Ok({
       tree,
       timestamp: Date.now(),
-      url_template: path.join(
-        config.proxy.rootUrl,
-        `${REDIRECT_TEMPLATE}?proxyType=${config.proxy.typeKey}`,
-      ),
+      url_template: path
+        .join(
+          config.proxy.rootUrl,
+          `${REDIRECT_TEMPLATE}?proxyType=${config.proxy.typeKey}`,
+        )
+        .replace(/\\/g, "/"),
     });
   } catch (e) {
     return e as ErrImpl<string>;
