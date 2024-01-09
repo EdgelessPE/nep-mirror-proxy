@@ -10,7 +10,7 @@ export interface MirrorHello {
   // 服务接口的根 URL，不是存储的
   root_url: string;
   property: {
-    deploy_regin: Locale;
+    deploy_region: Locale;
     proxy_storage: true;
     upload_bandwidth: number;
     sync_interval: number;
