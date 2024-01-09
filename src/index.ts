@@ -1,10 +1,10 @@
 import Koa from "koa";
 import Router from "koa-router";
-import { serviceHello } from "./service/hello";
+import { serviceHello } from "./services/hello";
 import { Result } from "ts-results";
 import { API_HELLO, API_PKG_SOFTWARE, REDIRECT_ROUTE_PATH } from "./constants";
-import { servicePkgSoftware } from "./service/pkg_software";
-import { serviceRedirect } from "./service/redirect";
+import { servicePkgSoftware } from "./services/pkg_software";
+import { serviceRedirect } from "./services/redirect";
 
 const PORT = 3000;
 
