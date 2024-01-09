@@ -1,7 +1,7 @@
 import { Result } from "ts-results";
 import { RouterContext } from "koa-router";
 import { createController } from "../proxies";
-import { RedirectCache } from "../cache";
+import { getRedirectCache } from "../cache";
 
 const controllerPromise = createController("");
 async function fetch(path: string): Promise<Result<string, string>> {
@@ -22,5 +22,5 @@ export async function serviceRedirect(
     path: string;
   };
 
-  return RedirectCache(path, fetch);
+  return getRedirectCache(path, fetch);
 }

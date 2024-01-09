@@ -1,11 +1,11 @@
-import { Result } from "ts-results";
+import { Ok, Result } from "ts-results";
 import { CACHE_INTERVAL } from "./constants";
 
 // 缓存逻辑封装
 function cacheFactory<T>() {
   const map: Map<string, [Result<T, string>, number]> = new Map();
 
-  return async (
+  const get = async (
     key: string,
     fetchWith: (key: string) => Promise<Result<T, string>>,
   ): Promise<Result<T, string>> => {
@@ -17,6 +17,11 @@ function cacheFactory<T>() {
     }
     return cached;
   };
+  const set = (key: string, val: T) => {
+    map.set(key, [new Ok(val), Date.now()]);
+  };
+
+  return [get, set] as const;
 }
 
-export const RedirectCache = cacheFactory<string>();
+export const [getRedirectCache] = cacheFactory<string>();
