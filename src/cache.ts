@@ -24,4 +24,6 @@ function cacheFactory<T>() {
   return [get, set] as const;
 }
 
+// 实例化的缓存封装
 export const [getRedirectCache] = cacheFactory<string>();
+export const [getAListSign, setAListSign] = cacheFactory<string>();
