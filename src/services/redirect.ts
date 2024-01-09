@@ -1,4 +1,4 @@
-import { Result } from "ts-results";
+import { Err, Result } from "ts-results";
 import { RouterContext } from "koa-router";
 import { createController } from "../proxies";
 import { getRedirectCache } from "../cache";
@@ -19,8 +19,11 @@ export async function serviceRedirect(
   ctx: RouterContext,
 ): Promise<Result<string, string>> {
   const { path } = ctx.request.query as {
-    path: string;
+    path?: string;
   };
+  if (!path) {
+    return new Err("Error:Missing query field 'path' in request url");
+  }
 
   return getRedirectCache(path, fetch);
 }
