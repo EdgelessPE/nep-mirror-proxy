@@ -1,10 +1,10 @@
 import { Err, ErrImpl, Ok, Result } from "ts-results";
-import path from "path";
 import { MirrorPkgSoftware, MirrorPkgSoftwareRelease } from "../type";
 import { IProxyController } from "../proxies/type";
 import { createController } from "../proxies";
 import { config } from "../config";
-import { CACHE_INTERVAL, REDIRECT_TEMPLATE } from "../constants";
+import { CACHE_INTERVAL, REDIRECT_URL_TEMPLATE } from "../constants";
+import { path_join } from "../utils";
 
 function readFactory(controller: Omit<IProxyController, "init">) {
   return async function read(path: string, isDir: boolean) {
@@ -24,10 +24,8 @@ async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
       `Error:No service with key 'PKG_SOFTWARE' defined in config`,
     );
   }
-  const controllerRes = await createController(config.proxy.typeKey, {
-    rootUrl: config.proxy.rootUrl,
-    basePath: serviceDefNode.path,
-  });
+  const basePath = serviceDefNode.path;
+  const controllerRes = await createController(basePath);
   if (controllerRes.err) {
     return controllerRes;
   }
@@ -74,12 +72,10 @@ async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
     return new Ok({
       tree,
       timestamp: Date.now(),
-      url_template: path
-        .join(
-          config.root_url,
-          `${REDIRECT_TEMPLATE}?proxyType=${config.proxy.typeKey}`,
-        )
-        .replace(/\\/g, "/"),
+      url_template: path_join(config.root_url, REDIRECT_URL_TEMPLATE).replace(
+        "{baseUrl}",
+        basePath,
+      ),
     });
   } catch (e) {
     return e as ErrImpl<string>;

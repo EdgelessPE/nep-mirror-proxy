@@ -1,9 +1,10 @@
 import { ControllerCtx, FileNode, IProxyController } from "../type";
 import { Err, Ok, Result } from "ts-results";
-import path from "path";
 import axios from "axios";
 import { promise2Result } from "../utils";
 import dayjs from "dayjs";
+import { path_join } from "../../utils";
+import { config } from "../../config";
 
 interface Content {
   is_dir: boolean;
@@ -16,7 +17,7 @@ interface Content {
 }
 
 async function fsList(p: string, { rootUrl }: ControllerCtx) {
-  const apiUrl = path.join(rootUrl, "/api/fs/list");
+  const apiUrl = path_join(rootUrl, "/api/fs/list");
   const body: {
     path: string;
     password?: string;
@@ -42,7 +43,7 @@ async function fsList(p: string, { rootUrl }: ControllerCtx) {
 }
 
 async function fsGet(p: string, { rootUrl }: ControllerCtx) {
-  const apiUrl = path.join(rootUrl, "/api/fs/get");
+  const apiUrl = path_join(rootUrl, "/api/fs/get");
   const body: { path: string; password?: string } = {
     path: p,
   };
@@ -66,7 +67,7 @@ async function fsGet(p: string, { rootUrl }: ControllerCtx) {
 }
 
 export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
-  const join = (p: string) => path.join(ctx.basePath, p).replace(/\\/g, "/");
+  const join = (p: string) => path_join(ctx.basePath, p);
   async function init() {
     return new Ok(undefined);
   }
@@ -82,7 +83,7 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
     }
     const res: FileNode[] = axiosRes.data.content.map(
       ({ name, modified, size, is_dir }) => ({
-        path: path.join(_p, name),
+        path: path_join(_p, name),
         name,
         size,
         timestamp: dayjs(modified).unix(),
@@ -101,7 +102,9 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
         `Error:AList api returned code ${axiosRes.code} when fetching file ${p}`,
       );
     }
-    const url = `${path.join(ctx.rootUrl, "d", p)}?sign=${axiosRes.data.sign}`;
+    const url = `${path_join(config.proxy.rootUrl, "d", p)}?sign=${
+      axiosRes.data.sign
+    }`;
     return new Ok(url);
   }
 

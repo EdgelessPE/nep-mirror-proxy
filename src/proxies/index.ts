@@ -1,6 +1,7 @@
 import { ControllerCtx, IProxyController, ProxyRegistry } from "./type";
 import { AListControllerFactory } from "./controllers/AList";
 import { Err, Ok, Result } from "ts-results";
+import { config } from "../config";
 
 const REGISTRY: ProxyRegistry[] = [
   {
@@ -10,11 +11,14 @@ const REGISTRY: ProxyRegistry[] = [
 ];
 
 export async function createController(
-  key: string,
-  ctx: ControllerCtx,
+  basePath: string,
 ): Promise<Result<Omit<IProxyController, "init">, string>> {
+  const key = config.proxy.typeKey;
   const node = REGISTRY.find((n) => n.key === key);
-
+  const ctx: ControllerCtx = {
+    rootUrl: config.proxy.rootUrl,
+    basePath,
+  };
   if (node) {
     const controller = node.controllerFactory(ctx);
     await controller.init();
