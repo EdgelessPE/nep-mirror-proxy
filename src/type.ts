@@ -37,7 +37,7 @@ export interface MirrorEptToolchainRelease {
 }
 
 export interface MirrorPkgSoftware {
-  timestamp: string;
+  timestamp: number;
   url_template: string;
   tree: Record<
     string,
@@ -52,7 +52,10 @@ export interface MirrorPkgSoftwareRelease {
   fileName: string;
   size: number;
   timestamp: number;
-  integrity: string;
+  // 完整性，后续通过 Bot 报告提供
+  integrity?: string;
+  // 元信息，后续通过 Bot 报告提供
   meta?: never;
+  // 权限，后续通过 Bot 报告提供
   permissions?: never[];
 }

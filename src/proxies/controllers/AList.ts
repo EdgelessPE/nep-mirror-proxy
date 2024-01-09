@@ -67,6 +67,9 @@ async function fsGet(p: string, { rootUrl }: ControllerCtx) {
 
 export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
   const join = (p: string) => path.join(ctx.basePath, p);
+  async function init() {
+    return new Ok(undefined);
+  }
   async function readDir(_p: string): Promise<Result<FileNode[], string>> {
     const p = join(_p);
     const data = await promise2Result(fsList(p, ctx));
@@ -76,7 +79,7 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
       return new Err(`Error:AList api returned code ${axiosRes.code}`);
     }
     const res: FileNode[] = axiosRes.data.content.map(
-      ({ name, modified, size, is_dir }) => ({
+      ({ name, modified, size, is_dir, sign }) => ({
         path: path.join(p, name),
         name,
         size,
@@ -98,5 +101,5 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
     return new Ok(url);
   }
 
-  return { readDir, fetchFile };
+  return { init, readDir, fetchFile };
 }

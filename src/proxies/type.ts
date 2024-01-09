@@ -15,6 +15,7 @@ export interface FileNode {
 }
 
 export interface IProxyController {
+  init: () => Promise<Result<void, string>>;
   readDir: (path: string) => Promise<Result<FileNode[], string>>;
   fetchFile: (path: string) => Promise<Result<string, string>>;
 }

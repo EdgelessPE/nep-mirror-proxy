@@ -9,14 +9,16 @@ const REGISTRY: ProxyRegistry[] = [
   },
 ];
 
-export function createController(
+export async function createController(
   key: string,
   ctx: ControllerCtx,
-): Result<IProxyController, string> {
+): Promise<Result<Omit<IProxyController, "init">, string>> {
   const node = REGISTRY.find((n) => n.key === key);
 
   if (node) {
-    return new Ok(node.controllerFactory(ctx));
+    const controller = node.controllerFactory(ctx);
+    await controller.init();
+    return new Ok(controller);
   } else {
     const availableKeys = REGISTRY.map((n) => n.key).join(", ");
     return new Err(
