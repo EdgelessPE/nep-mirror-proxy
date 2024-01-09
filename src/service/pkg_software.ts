@@ -76,7 +76,7 @@ async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
       timestamp: Date.now(),
       url_template: path
         .join(
-          config.proxy.rootUrl,
+          config.root_url,
           `${REDIRECT_TEMPLATE}?proxyType=${config.proxy.typeKey}`,
         )
         .replace(/\\/g, "/"),
