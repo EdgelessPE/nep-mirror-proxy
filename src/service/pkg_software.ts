@@ -4,7 +4,7 @@ import { MirrorPkgSoftware, MirrorPkgSoftwareRelease } from "../type";
 import { IProxyController } from "../proxies/type";
 import { createController } from "../proxies";
 import { config } from "../config";
-import { REDIRECT_TEMPLATE } from "../constants";
+import { CACHE_INTERVAL, REDIRECT_TEMPLATE } from "../constants";
 
 function readFactory(controller: Omit<IProxyController, "init">) {
   return async function read(path: string, isDir: boolean) {
@@ -16,9 +16,7 @@ function readFactory(controller: Omit<IProxyController, "init">) {
   };
 }
 
-export async function fetchPkgSoftware(): Promise<
-  Result<MirrorPkgSoftware, string>
-> {
+async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
   // 初始化读函数
   const serviceDefNode = config.service.find((n) => n.key === "PKG_SOFTWARE");
   if (!serviceDefNode) {
@@ -86,4 +84,43 @@ export async function fetchPkgSoftware(): Promise<
   } catch (e) {
     return e as ErrImpl<string>;
   }
+}
+
+let softwareCache: {
+  current: Result<MirrorPkgSoftware, string> | null;
+  timestamp: number;
+} = {
+  current: null,
+  timestamp: 0,
+};
+let queueCallbacks: (() => void)[] = [];
+
+const updateCache = async () => {
+  console.log(`Info:Updating software packages`);
+  softwareCache = {
+    current: await fetchPkgSoftware(),
+    timestamp: Date.now(),
+  };
+  if (queueCallbacks.length > 0) {
+    queueCallbacks.forEach((fn) => fn());
+    queueCallbacks = [];
+  }
+  console.log(`Info:Updated software packages`);
+};
+
+updateCache().then();
+setInterval(updateCache, CACHE_INTERVAL);
+
+export async function servicePkgSoftware(): Promise<
+  Result<MirrorPkgSoftware, string>
+> {
+  if (softwareCache.current === null) {
+    const wait = async () => {
+      return new Promise<void>((resolve) => {
+        queueCallbacks.push(resolve);
+      });
+    };
+    await wait();
+  }
+  return softwareCache.current!;
 }
