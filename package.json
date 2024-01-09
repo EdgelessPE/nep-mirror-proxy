@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json"
+    "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json",
+    "prepare": "simple-git-hooks"
   },
   "author": "Cno",
   "license": "MPL-2.0",
@@ -26,9 +27,17 @@
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
+    "lint-staged": "^15.2.0",
     "prettier": "3.1.1",
+    "simple-git-hooks": "^2.9.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "typescript-json-schema": "^0.62.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
   }
 }
