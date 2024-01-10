@@ -24,6 +24,7 @@
     "tslib": "^2.6.2"
   },
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/koa": "^2.13.12",
     "@types/koa-router": "^7.4.8",
