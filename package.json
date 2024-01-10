@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "rollup -c",
+    "start": "node dist/bundle.cjs",
     "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json",
     "prepare": "simple-git-hooks",
     "lint": "eslint --fix src/**/*"
