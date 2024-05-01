@@ -6,7 +6,8 @@ protocol = "1.0.0"
 root_url = "http://localhost:3000"
 
 service = [
-    { key = "PKG_SOFTWARE", path = "/nep" }
+    { key = "HELLO", path = "/hello" },
+    { key = "PKG_SOFTWARE", path = "/nep" },
 ]
 
 [property]

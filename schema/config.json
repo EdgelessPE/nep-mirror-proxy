@@ -116,6 +116,7 @@
         "ServiceKeys": {
             "enum": [
                 "EPT_TOOLCHAIN",
+                "HELLO",
                 "PKG_SOFTWARE"
             ],
             "type": "string"

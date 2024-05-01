@@ -1,5 +1,5 @@
 export type Locale = "zh-CN" | "en-US" | "Multi";
-export type ServiceKeys = "EPT_TOOLCHAIN" | "PKG_SOFTWARE";
+export type ServiceKeys = "HELLO" | "EPT_TOOLCHAIN" | "PKG_SOFTWARE";
 
 export interface MirrorHello {
   name: string;

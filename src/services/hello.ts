@@ -1,11 +1,12 @@
 import { MirrorHello, ServiceKeys } from "../type";
 import { Ok, Result } from "ts-results";
 import { config } from "../config";
-import { API_EPT_TOOLCHAIN, API_PKG_SOFTWARE } from "../constants";
+import { API_EPT_TOOLCHAIN, API_HELLO, API_PKG_SOFTWARE } from "../constants";
 
 const SERVICE_PATH_MAP: Record<ServiceKeys, string> = {
-  EPT_TOOLCHAIN: API_EPT_TOOLCHAIN,
+  HELLO: API_HELLO,
   PKG_SOFTWARE: API_PKG_SOFTWARE,
+  EPT_TOOLCHAIN: API_EPT_TOOLCHAIN,
 };
 
 const cacheHello = new Ok({
