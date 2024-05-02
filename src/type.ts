@@ -52,6 +52,7 @@ export interface MirrorPkgSoftwareRelease {
   fileName: string;
   size: number;
   timestamp: number;
+  version?: string;
   // 完整性，后续通过 Bot 报告提供
   integrity?: string;
   // 元信息，后续通过 Bot 报告提供
