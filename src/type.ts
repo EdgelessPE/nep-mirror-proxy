@@ -49,7 +49,7 @@ export interface MirrorPkgSoftware {
 }
 
 export interface MirrorPkgSoftwareRelease {
-  fileName: string;
+  file_name: string;
   size: number;
   timestamp: number;
   version?: string;

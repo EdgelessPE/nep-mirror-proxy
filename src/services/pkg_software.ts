@@ -39,7 +39,7 @@ async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
   ): Promise<MirrorPkgSoftwareRelease[]> => {
     const releaseList = await read(softwarePath, false);
     return releaseList.map((file) => ({
-      fileName: file.name,
+      file_name: file.name,
       version: file.name.split("_")[1] || undefined,
       size: file.size,
       timestamp: file.timestamp,
