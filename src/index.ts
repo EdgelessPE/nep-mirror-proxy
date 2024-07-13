@@ -6,7 +6,7 @@ import { API_HELLO, API_PKG_SOFTWARE, REDIRECT_ROUTE_PATH } from "./constants";
 import { servicePkgSoftware } from "./services/pkg_software";
 import { serviceRedirect } from "./services/redirect";
 
-const PORT = 3000;
+const PORT = 2331;
 
 const app = new Koa();
 const router = new Router();

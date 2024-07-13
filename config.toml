@@ -3,7 +3,7 @@ locale = "zh-CN"
 description = "Official nep mirror"
 maintainer = "Edgeless"
 protocol = "1.0.0"
-root_url = "http://localhost:3000"
+root_url = "https://registry.edgeless.top"
 
 service = [
     { key = "HELLO", path = "/hello" },
