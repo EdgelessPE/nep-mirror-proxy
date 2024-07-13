@@ -1,5 +1,5 @@
-import path from "path";
+import urlJoin from "url-join";
 
 export function path_join(...arr: string[]) {
-  return path.join(...arr).replace(/\\/g, "/");
+  return urlJoin(...arr);
 }
