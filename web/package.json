@@ -1,5 +1,5 @@
 {
-  "name": "nep-mirror-home",
+  "name": "nep-mirror-proxy-web",
   "type": "module",
   "version": "1.0.2",
   "scripts": {

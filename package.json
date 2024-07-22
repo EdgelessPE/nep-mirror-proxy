@@ -1,5 +1,5 @@
 {
-  "name": "nep-mirror",
+  "name": "nep-mirror-proxy",
   "version": "1.0.0",
   "description": "Implement for Nep Mirror Protocol V1 with proxy storage",
   "author": "Cno",
