@@ -1,0 +1,31 @@
+{
+  "name": "nep-mirror",
+  "version": "1.0.0",
+  "description": "Implement for Nep Mirror Protocol V1 with proxy storage",
+  "author": "Cno",
+  "license": "MPL-2.0",
+  "workspaces": [
+    "app",
+    "web"
+  ],
+  "scripts": {
+    "prepare": "simple-git-hooks",
+    "lint": "eslint --fix app/**/*  web/**/*"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "lint-staged": "^15.2.0",
+    "prettier": "3.1.1",
+    "simple-git-hooks": "^2.9.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --fix"
+  }
+}

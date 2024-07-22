@@ -1,18 +1,13 @@
 {
   "name": "nep-mirror-proxy",
   "version": "1.0.0",
-  "description": "Implement for Nep Mirror Protocol V1 with proxy storage",
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "rollup -c",
     "start": "node dist/bundle.cjs",
-    "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json",
-    "prepare": "simple-git-hooks",
-    "lint": "eslint --fix src/**/*"
+    "gen:schema": "typescript-json-schema --required src/config/type.ts Config -o schema/config.json"
   },
-  "author": "Cno",
-  "license": "MPL-2.0",
   "dependencies": {
     "@iarna/toml": "^2.2.5",
     "ajv": "^8.12.0",
@@ -29,23 +24,9 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/koa": "^2.13.12",
     "@types/koa-router": "^7.4.8",
-    "@typescript-eslint/eslint-plugin": "^6.18.0",
-    "@typescript-eslint/parser": "^6.18.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.2",
-    "lint-staged": "^15.2.0",
-    "prettier": "3.1.1",
     "rollup": "^4.9.4",
-    "simple-git-hooks": "^2.9.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "typescript-json-schema": "^0.62.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
-  },
-  "lint-staged": {
-    "*.ts": "eslint --fix"
   }
 }
