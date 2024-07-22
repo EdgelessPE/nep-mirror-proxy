@@ -17,7 +17,7 @@ module.exports = {
         bgDarkTransparentLighter: "rgb(48, 49, 54, 0.7)",
         mainBorder: "rgb(255,255,255,0.15)",
         mainBorderDarker: "rgb(255,255,255,0.07)",
-        quoteIconColor: "rgb(178, 184, 205)"
+        quoteIconColor: "rgb(178, 184, 205)",
       },
       fontFamily: {
         Inter: "Inter",
@@ -27,10 +27,9 @@ module.exports = {
         sm: "640px",
         md: "768px",
         lg: "1024px",
-        xl: "1280px",      
+        xl: "1280px",
         "2xl": "1536px",
       },
     },
   },
 };
-

@@ -6,8 +6,16 @@ import { GithubIcon } from "../assets/icons/GithubIcon.tsx";
 
 const navbarLinks = [
   { label: "首页", href: "/#", ariaLabel: "Home" },
-  { label: "ept 工具", href: "https://ept.edgeless.top/ept/guide.html", ariaLabel: "Ept Wiki" },
-  { label: "Nep 规范", href: "https://ept.edgeless.top/nep/introduction/1-whats.html", ariaLabel: "Nep Wiki" },
+  {
+    label: "ept 工具",
+    href: "https://ept.edgeless.top/ept/guide.html",
+    ariaLabel: "Ept Wiki",
+  },
+  {
+    label: "Nep 规范",
+    href: "https://ept.edgeless.top/nep/introduction/1-whats.html",
+    ariaLabel: "Nep Wiki",
+  },
 ];
 
 export const Navbar = () => {
@@ -61,7 +69,7 @@ export const Navbar = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0 }}
-          style={{marginLeft: "auto"}}
+          style={{ marginLeft: "auto" }}
         >
           <div className="grow basis-0 justify-end hidden lg:flex">
             <a

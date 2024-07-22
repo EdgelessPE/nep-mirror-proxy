@@ -8,6 +8,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:prettier/recommended",
+    "plugin:astro/recommended",
   ],
   overrides: [
     {
@@ -17,6 +18,18 @@ module.exports = {
       files: [".eslintrc.{js,cjs}"],
       parserOptions: {
         sourceType: "script",
+      },
+    },
+    {
+      files: ["*.astro"],
+      parser: "astro-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
+      rules: {
+        // override/add rules settings here, such as:
+        // "astro/no-set-html-directive": "error"
       },
     },
   ],
@@ -29,4 +42,5 @@ module.exports = {
   rules: {
     curly: "error",
   },
+  ignorePatterns: ["**/*.css", "**/*.jpg", "**/*.png"],
 };

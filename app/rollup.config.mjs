@@ -1,5 +1,5 @@
 import typescript from "@rollup/plugin-typescript";
-import terser from '@rollup/plugin-terser';
+import terser from "@rollup/plugin-terser";
 
 export default {
   input: "src/index.ts",
@@ -7,5 +7,5 @@ export default {
     file: "dist/bundle.cjs",
     format: "commonjs",
   },
-  plugins: [typescript(),terser()],
+  plugins: [typescript(), terser()],
 };

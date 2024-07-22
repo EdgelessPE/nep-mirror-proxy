@@ -1,126 +1,109 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "allOf": [
-        {
-            "$ref": "#/definitions/MirrorHello"
-        },
-        {
-            "properties": {
-                "proxy": {
-                    "properties": {
-                        "rootUrl": {
-                            "type": "string"
-                        },
-                        "typeKey": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "rootUrl",
-                        "typeKey"
-                    ],
-                    "type": "object"
-                }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "allOf": [
+    {
+      "$ref": "#/definitions/MirrorHello"
+    },
+    {
+      "properties": {
+        "proxy": {
+          "properties": {
+            "rootUrl": {
+              "type": "string"
             },
-            "required": [
-                "proxy"
-            ],
-            "type": "object"
+            "typeKey": {
+              "type": "string"
+            }
+          },
+          "required": ["rootUrl", "typeKey"],
+          "type": "object"
         }
-    ],
-    "definitions": {
-        "Locale": {
-            "enum": [
-                "Multi",
-                "en-US",
-                "zh-CN"
-            ],
-            "type": "string"
-        },
-        "MirrorHello": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "locale": {
-                    "$ref": "#/definitions/Locale"
-                },
-                "maintainer": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "property": {
-                    "properties": {
-                        "deploy_region": {
-                            "$ref": "#/definitions/Locale"
-                        },
-                        "proxy_storage": {
-                            "const": true,
-                            "type": "boolean"
-                        },
-                        "sync_interval": {
-                            "type": "number"
-                        },
-                        "upload_bandwidth": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "deploy_region",
-                        "proxy_storage",
-                        "sync_interval",
-                        "upload_bandwidth"
-                    ],
-                    "type": "object"
-                },
-                "protocol": {
-                    "const": "1.0.0",
-                    "type": "string"
-                },
-                "root_url": {
-                    "type": "string"
-                },
-                "service": {
-                    "items": {
-                        "properties": {
-                            "key": {
-                                "$ref": "#/definitions/ServiceKeys"
-                            },
-                            "path": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "key",
-                            "path"
-                        ],
-                        "type": "object"
-                    },
-                    "type": "array"
-                }
-            },
-            "required": [
-                "description",
-                "locale",
-                "maintainer",
-                "name",
-                "property",
-                "protocol",
-                "root_url",
-                "service"
-            ],
-            "type": "object"
-        },
-        "ServiceKeys": {
-            "enum": [
-                "EPT_TOOLCHAIN",
-                "HELLO",
-                "PKG_SOFTWARE"
-            ],
-            "type": "string"
-        }
+      },
+      "required": ["proxy"],
+      "type": "object"
     }
+  ],
+  "definitions": {
+    "Locale": {
+      "enum": ["Multi", "en-US", "zh-CN"],
+      "type": "string"
+    },
+    "MirrorHello": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "locale": {
+          "$ref": "#/definitions/Locale"
+        },
+        "maintainer": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "property": {
+          "properties": {
+            "deploy_region": {
+              "$ref": "#/definitions/Locale"
+            },
+            "proxy_storage": {
+              "const": true,
+              "type": "boolean"
+            },
+            "sync_interval": {
+              "type": "number"
+            },
+            "upload_bandwidth": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "deploy_region",
+            "proxy_storage",
+            "sync_interval",
+            "upload_bandwidth"
+          ],
+          "type": "object"
+        },
+        "protocol": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "root_url": {
+          "type": "string"
+        },
+        "service": {
+          "items": {
+            "properties": {
+              "key": {
+                "$ref": "#/definitions/ServiceKeys"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": ["key", "path"],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "description",
+        "locale",
+        "maintainer",
+        "name",
+        "property",
+        "protocol",
+        "root_url",
+        "service"
+      ],
+      "type": "object"
+    },
+    "ServiceKeys": {
+      "enum": ["EPT_TOOLCHAIN", "HELLO", "PKG_SOFTWARE"],
+      "type": "string"
+    }
+  }
 }
-
