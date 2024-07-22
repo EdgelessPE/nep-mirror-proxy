@@ -1,5 +1,6 @@
 import Koa from "koa";
 import Router from "koa-router";
+import serve from "koa-static";
 import { serviceHello } from "./services/hello";
 import { Result } from "ts-results";
 import { API_HELLO, API_PKG_SOFTWARE, REDIRECT_ROUTE_PATH } from "./constants";
@@ -10,6 +11,8 @@ const PORT = 2331;
 
 const app = new Koa();
 const router = new Router();
+
+app.use(serve("web-dist"));
 
 router.get(API_HELLO, serviceHello);
 router.get(API_PKG_SOFTWARE, servicePkgSoftware);
