@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { Hero } from '../components/Hero.tsx'
+import { Navbar } from '../components/Navbar.tsx'
+import { ScrollUpButton } from '../components/ScrollUpButton.tsx'
+import '../styles/Theme.css'
+import '../styles/Diagonals.css'
+---
+
+<Layout title="Official Nep Mirror">
+  <Navbar client:load />
+  <Hero client:load />
+  <ScrollUpButton client:load />
+</Layout>
