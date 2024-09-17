@@ -45,7 +45,7 @@ async function fetchEptToolchain(): Promise<
       }),
     )
     .sort((a, b) => {
-      return semver.lte(a.version, b.version) ? 0 : 1;
+      return semver.lte(a.version, b.version) ? 1 : -1;
     });
   return new Ok({
     update: config.update,
