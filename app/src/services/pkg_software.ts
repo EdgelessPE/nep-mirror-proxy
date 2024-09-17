@@ -118,5 +118,5 @@ export async function servicePkgSoftware(): Promise<
     };
     await wait();
   }
-  return softwareCache.current!;
+  return softwareCache.current ?? new Err("Error:Fatal:Null cache data");
 }

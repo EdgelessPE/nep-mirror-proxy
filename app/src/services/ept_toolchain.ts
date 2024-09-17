@@ -4,6 +4,7 @@ import { config } from "../config";
 import { createController } from "../proxies";
 import { path_join } from "../utils";
 import { CACHE_INTERVAL, REDIRECT_ROUTE_PATH } from "../constants";
+import semver from "semver";
 
 let cache: Result<MirrorEptToolchain, string> | null = null;
 let queueCallbacks: (() => void)[] = [];
@@ -32,15 +33,20 @@ async function fetchEptToolchain(): Promise<
   }
   const releases: MirrorEptToolchainRelease[] = readRes.val
     .filter((n) => n.name.match(/^ept_[0-9.]+\.zip$/))
-    .map(({ name, size, timestamp }) => ({
-      name,
-      version: name.slice(4, -4),
-      url:
-        path_join(config.root_url, REDIRECT_ROUTE_PATH) +
-        `?path=${basePath}/${name}`,
-      size,
-      timestamp,
-    }));
+    .map(
+      ({ name, size, timestamp }): MirrorEptToolchainRelease => ({
+        name,
+        version: name.slice(4, -4),
+        url:
+          path_join(config.root_url, REDIRECT_ROUTE_PATH) +
+          `?path=${basePath}/${name}`,
+        size,
+        timestamp,
+      }),
+    )
+    .sort((a, b) => {
+      return semver.lte(a.version, b.version) ? 0 : 1;
+    });
   return new Ok({
     update: config.update,
     releases,
@@ -70,5 +76,22 @@ export async function serviceEptToolchain(): Promise<
     };
     await wait();
   }
-  return cache!;
+  return cache ?? new Err("Error:Fatal:Null cache data");
+}
+
+export async function serviceEptLatest(): Promise<Result<string, string>> {
+  if (cache === null) {
+    const wait = async () => {
+      return new Promise<void>((resolve) => {
+        queueCallbacks.push(resolve);
+      });
+    };
+    await wait();
+  }
+  const rawRes = cache ?? new Err("Error:Fatal:Null cache data");
+  if (rawRes.err) {
+    return rawRes;
+  }
+  const raw = rawRes.unwrap();
+  return new Ok(raw.releases[0].url);
 }
