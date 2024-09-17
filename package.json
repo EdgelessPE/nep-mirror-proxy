@@ -9,6 +9,7 @@
     "web"
   ],
   "scripts": {
+    "dev": "cd app && pnpm run dev",
     "serve": "cd web && pnpm run build --silent && cd ../app && pnpm run dev",
     "prepare": "simple-git-hooks",
     "lint": "eslint --fix app/src/**/*  web/src/**/*"
@@ -30,5 +31,6 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --fix"
-  }
+  },
+  "packageManager": "pnpm@9.10.0"
 }

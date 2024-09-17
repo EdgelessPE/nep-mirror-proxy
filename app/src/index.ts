@@ -3,9 +3,15 @@ import Router from "koa-router";
 import serve from "koa-static";
 import { serviceHello } from "./services/hello";
 import { Result } from "ts-results";
-import { API_HELLO, API_PKG_SOFTWARE, REDIRECT_ROUTE_PATH } from "./constants";
+import {
+  API_EPT_TOOLCHAIN,
+  API_HELLO,
+  API_PKG_SOFTWARE,
+  REDIRECT_ROUTE_PATH,
+} from "./constants";
 import { servicePkgSoftware } from "./services/pkg_software";
 import { serviceRedirect } from "./services/redirect";
+import { serviceEptToolchain } from "./services/ept_toolchain";
 
 const PORT = 2331;
 
@@ -16,6 +22,7 @@ app.use(serve("web-dist"));
 
 router.get(API_HELLO, serviceHello);
 router.get(API_PKG_SOFTWARE, servicePkgSoftware);
+router.get(API_EPT_TOOLCHAIN, serviceEptToolchain);
 router.get(REDIRECT_ROUTE_PATH, serviceRedirect);
 
 // Result 类型中间件

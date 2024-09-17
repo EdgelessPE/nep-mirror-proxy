@@ -1,3 +1,5 @@
+import { Config } from "./config/type";
+
 export type Locale = "zh-CN" | "en-US" | "Multi";
 export type ServiceKeys = "HELLO" | "EPT_TOOLCHAIN" | "PKG_SOFTWARE";
 
@@ -24,6 +26,7 @@ export interface MirrorHello {
 }
 
 export interface MirrorEptToolchain {
+  update: Config["update"];
   releases: MirrorEptToolchainRelease[];
 }
 
@@ -33,7 +36,7 @@ export interface MirrorEptToolchainRelease {
   url: string;
   size: number;
   timestamp: number;
-  integrity: string;
+  integrity?: string;
 }
 
 export interface MirrorPkgSoftware {
@@ -53,10 +56,4 @@ export interface MirrorPkgSoftwareRelease {
   size: number;
   timestamp: number;
   version?: string;
-  // 完整性，后续通过 Bot 报告提供
-  integrity?: string;
-  // 元信息，后续通过 Bot 报告提供
-  meta?: never;
-  // 权限，后续通过 Bot 报告提供
-  permissions?: never[];
 }

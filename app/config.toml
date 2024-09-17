@@ -6,8 +6,12 @@ protocol = "1.0.0"
 root_url = "https://registry.edgeless.top"
 
 service = [
+    # 此处的 path 无实际含义
     { key = "HELLO", path = "/hello" },
+    # path 表示在 AList 中的包存放起始路径
     { key = "PKG_SOFTWARE", path = "/nep" },
+    # path 表示在 AList 中的构建存放起始路径
+    { key = "EPT_TOOLCHAIN", path = "/ept_builds" },
 ]
 
 [property]
@@ -19,3 +23,6 @@ sync_interval = 0
 [proxy]
 typeKey = "AList"
 rootUrl = "https://zfile.edgeless.top"
+
+[update]
+wild_gaps = []

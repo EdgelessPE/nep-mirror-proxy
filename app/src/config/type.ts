@@ -5,4 +5,7 @@ export type Config = MirrorHello & {
     typeKey: string;
     rootUrl: string;
   };
+  update: {
+    wild_gaps: string[];
+  };
 };

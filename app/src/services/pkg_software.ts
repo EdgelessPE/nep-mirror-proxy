@@ -105,8 +105,7 @@ const updateCache = async () => {
   console.log(`Info:Updated software packages`);
 };
 
-updateCache().then();
-setInterval(updateCache, CACHE_INTERVAL);
+updateCache().then(() => setInterval(updateCache, CACHE_INTERVAL));
 
 export async function servicePkgSoftware(): Promise<
   Result<MirrorPkgSoftware, string>
