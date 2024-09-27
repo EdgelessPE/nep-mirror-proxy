@@ -18,6 +18,7 @@ export async function serviceHello(): Promise<Result<MirrorHello, string>> {
   return new Ok({
     ...config,
     proxy: undefined,
+    dir: undefined,
     service,
   });
 }

@@ -8,4 +8,7 @@ export type Config = MirrorHello & {
   update: {
     wild_gaps: string[];
   };
+  dir: {
+    meta_cache: string;
+  };
 };

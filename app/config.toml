@@ -26,3 +26,6 @@ rootUrl = "https://zfile.edgeless.top"
 
 [update]
 wild_gaps = []
+
+[dir]
+meta_cache = "meta"
