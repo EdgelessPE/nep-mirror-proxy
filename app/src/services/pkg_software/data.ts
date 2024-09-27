@@ -1,10 +1,10 @@
+import { IProxyController } from "../../proxies/type";
 import { Err, ErrImpl, Ok, Result } from "ts-results";
-import { MirrorPkgSoftware, MirrorPkgSoftwareRelease } from "../type";
-import { IProxyController } from "../proxies/type";
-import { createController } from "../proxies";
-import { config } from "../config";
-import { CACHE_INTERVAL, REDIRECT_URL_TEMPLATE } from "../constants";
-import { path_join } from "../utils";
+import { MirrorPkgSoftware, MirrorPkgSoftwareRelease } from "../../type";
+import { config } from "../../config";
+import { createController } from "../../proxies";
+import { path_join } from "../../utils";
+import { REDIRECT_URL_TEMPLATE } from "../../constants";
 
 function readFactory(controller: Omit<IProxyController, "init">) {
   return async function read(path: string, isDir: boolean) {
@@ -16,7 +16,9 @@ function readFactory(controller: Omit<IProxyController, "init">) {
   };
 }
 
-async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
+export async function fetchPkgSoftware(): Promise<
+  Result<MirrorPkgSoftware, string>
+> {
   // 初始化读函数
   const serviceDefNode = config.service.find((n) => n.key === "PKG_SOFTWARE");
   if (!serviceDefNode) {
@@ -83,42 +85,4 @@ async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
   } catch (e) {
     return e as ErrImpl<string>;
   }
-}
-
-let softwareCache: {
-  current: Result<MirrorPkgSoftware, string> | null;
-  timestamp: number;
-} = {
-  current: null,
-  timestamp: 0,
-};
-let queueCallbacks: (() => void)[] = [];
-
-const updateCache = async () => {
-  console.log(`Info: Updating software packages...`);
-  softwareCache = {
-    current: await fetchPkgSoftware(),
-    timestamp: Date.now(),
-  };
-  if (queueCallbacks.length > 0) {
-    queueCallbacks.forEach((fn) => fn());
-    queueCallbacks = [];
-  }
-  console.log(`Info: Updated software packages`);
-};
-
-updateCache().then(() => setInterval(updateCache, CACHE_INTERVAL));
-
-export async function servicePkgSoftware(): Promise<
-  Result<MirrorPkgSoftware, string>
-> {
-  if (softwareCache.current === null) {
-    const wait = async () => {
-      return new Promise<void>((resolve) => {
-        queueCallbacks.push(resolve);
-      });
-    };
-    await wait();
-  }
-  return softwareCache.current ?? new Err("Error:Fatal:Null cache data");
 }
