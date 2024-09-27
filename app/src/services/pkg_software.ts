@@ -38,12 +38,14 @@ async function fetchPkgSoftware(): Promise<Result<MirrorPkgSoftware, string>> {
     softwarePath: string,
   ): Promise<MirrorPkgSoftwareRelease[]> => {
     const releaseList = await read(softwarePath, false);
-    return releaseList.map((file) => ({
-      file_name: file.name,
-      version: file.name.split("_")[1] || undefined,
-      size: file.size,
-      timestamp: file.timestamp,
-    }));
+    return releaseList
+      .filter((n) => n.name.endsWith(".nep"))
+      .map((file) => ({
+        file_name: file.name,
+        version: file.name.split("_")[1] || undefined,
+        size: file.size,
+        timestamp: file.timestamp,
+      }));
   };
   const readSoftwares = async (
     scopePath: string,
