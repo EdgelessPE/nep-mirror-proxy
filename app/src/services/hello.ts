@@ -1,7 +1,7 @@
-import { MirrorHello, ServiceKeys } from "../type";
+import { MirrorHello, ServiceKeys } from "@/type";
 import { Ok, Result } from "ts-results";
-import { config } from "../config";
-import { API_EPT_TOOLCHAIN, API_HELLO, API_PKG_SOFTWARE } from "../constants";
+import { config } from "@/config";
+import { API_EPT_TOOLCHAIN, API_HELLO, API_PKG_SOFTWARE } from "@/constants";
 
 const SERVICE_PATH_MAP: Record<ServiceKeys, string> = {
   HELLO: API_HELLO,

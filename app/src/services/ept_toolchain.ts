@@ -1,9 +1,9 @@
 import { Err, Ok, Result } from "ts-results";
-import { MirrorEptToolchain, MirrorEptToolchainRelease } from "../type";
-import { config } from "../config";
-import { createController } from "../proxies";
-import { path_join } from "../utils";
-import { CACHE_INTERVAL, REDIRECT_ROUTE_PATH } from "../constants";
+import { MirrorEptToolchain, MirrorEptToolchainRelease } from "@/type";
+import { config } from "@/config";
+import { createController } from "@/proxies";
+import { path_join } from "@/utils";
+import { CACHE_INTERVAL, REDIRECT_ROUTE_PATH } from "@/constants";
 import semver from "semver";
 
 let cache: Result<MirrorEptToolchain, string> | null = null;

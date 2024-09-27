@@ -1,6 +1,6 @@
 import { Err, Result } from "ts-results";
-import { MirrorPkgSoftware } from "../../type";
-import { CACHE_INTERVAL } from "../../constants";
+import { MirrorPkgSoftware } from "@/type";
+import { CACHE_INTERVAL } from "@/constants";
 import { softwareCache, updateCache, wait } from "./cache";
 
 updateCache().then(() => setInterval(updateCache, CACHE_INTERVAL));

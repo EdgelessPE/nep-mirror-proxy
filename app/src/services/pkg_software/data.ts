@@ -1,10 +1,10 @@
-import { IProxyController } from "../../proxies/type";
+import { IProxyController } from "@/proxies/type";
 import { Err, ErrImpl, Ok, Result } from "ts-results";
-import { MirrorPkgSoftware, MirrorPkgSoftwareRelease } from "../../type";
-import { config } from "../../config";
-import { createController } from "../../proxies";
-import { path_join } from "../../utils";
-import { REDIRECT_URL_TEMPLATE } from "../../constants";
+import { MirrorPkgSoftware, MirrorPkgSoftwareRelease } from "@/type";
+import { config } from "@/config";
+import { createController } from "@/proxies";
+import { path_join } from "@/utils";
+import { REDIRECT_URL_TEMPLATE } from "@/constants";
 
 function readFactory(controller: Omit<IProxyController, "init">) {
   return async function read(path: string, isDir: boolean) {

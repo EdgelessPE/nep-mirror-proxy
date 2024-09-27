@@ -1,7 +1,7 @@
 import { Err, Result } from "ts-results";
 import { RouterContext } from "koa-router";
-import { createController } from "../proxies";
-import { getRedirectCache } from "../cache";
+import { createController } from "@/proxies";
+import { getRedirectCache } from "@/cache";
 
 const controllerPromise = createController("");
 async function fetch(path: string): Promise<Result<string, string>> {

@@ -1,7 +1,7 @@
 import { ControllerCtx, IProxyController, ProxyRegistry } from "./type";
 import { AListControllerFactory } from "./controllers/AList";
 import { Err, Ok, Result } from "ts-results";
-import { config } from "../config";
+import { config } from "@/config";
 
 const REGISTRY: ProxyRegistry[] = [
   {

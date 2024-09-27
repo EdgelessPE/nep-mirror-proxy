@@ -3,9 +3,9 @@ import { Err, Ok, Result } from "ts-results";
 import axios from "axios";
 import { promise2Result } from "../utils";
 import dayjs from "dayjs";
-import { path_join } from "../../utils";
-import { config } from "../../config";
-import { getAListSign, setAListSign } from "../../cache";
+import { path_join } from "@/utils";
+import { config } from "@/config";
+import { getAListSign, setAListSign } from "@/cache";
 
 interface Content {
   is_dir: boolean;
