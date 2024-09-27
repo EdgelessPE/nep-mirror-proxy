@@ -3,10 +3,12 @@ import { Err, Ok, Result } from "ts-results";
 import fs from "fs";
 import TOML from "@iarna/toml";
 import Ajv from "ajv";
+
+const CONFIG_NAME = "config.toml";
 const ajv = new Ajv();
 
 function readConfig(): Result<Config, string> {
-  const text = fs.readFileSync("config.toml").toString();
+  const text = fs.readFileSync(CONFIG_NAME).toString();
   const obj = TOML.parse(text);
   const schemaText = fs.readFileSync("schema/config.json").toString();
   const validate = ajv.compile(JSON.parse(schemaText));
@@ -20,4 +22,9 @@ function readConfig(): Result<Config, string> {
   return new Ok(obj as unknown as Config);
 }
 
-export const config = readConfig().unwrap();
+export let config = readConfig().unwrap();
+
+fs.watchFile(CONFIG_NAME, () => {
+  console.log(`Info: Config '${CONFIG_NAME}' changed, reload config`);
+  config = readConfig().unwrap();
+});

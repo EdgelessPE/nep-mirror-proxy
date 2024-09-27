@@ -59,5 +59,5 @@ app.use(async (ctx, next) => {
 });
 app.use(router.routes());
 
-console.log(`Listening on port ${PORT}`);
+console.log(`Info: Server listening on port ${PORT}`);
 app.listen(PORT);

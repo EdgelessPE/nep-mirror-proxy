@@ -95,7 +95,7 @@ let softwareCache: {
 let queueCallbacks: (() => void)[] = [];
 
 const updateCache = async () => {
-  console.log(`Info:Updating software packages`);
+  console.log(`Info: Updating software packages...`);
   softwareCache = {
     current: await fetchPkgSoftware(),
     timestamp: Date.now(),
@@ -104,7 +104,7 @@ const updateCache = async () => {
     queueCallbacks.forEach((fn) => fn());
     queueCallbacks = [];
   }
-  console.log(`Info:Updated software packages`);
+  console.log(`Info: Updated software packages`);
 };
 
 updateCache().then(() => setInterval(updateCache, CACHE_INTERVAL));

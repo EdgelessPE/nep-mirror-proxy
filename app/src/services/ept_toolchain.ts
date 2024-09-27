@@ -54,13 +54,13 @@ async function fetchEptToolchain(): Promise<
 }
 
 const updateCache = async () => {
-  console.log("Info:Updating ept toolchain");
+  console.log("Info: Updating ept toolchain...");
   cache = await fetchEptToolchain();
   if (queueCallbacks.length > 0) {
     queueCallbacks.forEach((fn) => fn());
     queueCallbacks = [];
   }
-  console.log("Info:Updated ept toolchain");
+  console.log("Info: Updated ept toolchain");
 };
 
 updateCache().then(() => setInterval(updateCache, CACHE_INTERVAL));
