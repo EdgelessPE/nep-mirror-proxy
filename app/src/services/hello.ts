@@ -9,15 +9,15 @@ const SERVICE_PATH_MAP: Record<ServiceKeys, string> = {
   EPT_TOOLCHAIN: API_EPT_TOOLCHAIN,
 };
 
-const cacheHello = new Ok({
-  ...config,
-  proxy: undefined,
-  service: config.service.map((raw) => ({
-    key: raw.key,
-    path: SERVICE_PATH_MAP[raw.key],
-  })),
-});
+const service = config.service.map((raw) => ({
+  key: raw.key,
+  path: SERVICE_PATH_MAP[raw.key],
+}));
 
 export async function serviceHello(): Promise<Result<MirrorHello, string>> {
-  return cacheHello;
+  return new Ok({
+    ...config,
+    proxy: undefined,
+    service,
+  });
 }
