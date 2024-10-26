@@ -83,6 +83,7 @@ export async function fetchPkgSoftware(): Promise<
       ),
     });
   } catch (e) {
+    console.error(e);
     return e as ErrImpl<string>;
   }
 }
