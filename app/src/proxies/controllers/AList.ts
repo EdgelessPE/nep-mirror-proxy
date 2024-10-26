@@ -33,7 +33,7 @@ async function fsList(p: string, { rootUrl }: ControllerCtx) {
   return axios.post<{
     code: number;
     data: {
-      content: Content[];
+      content: Content[] | null;
       provider: string;
       readme: string;
       total: number;
@@ -86,8 +86,9 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
         `Error:AList api returned code ${axiosRes.code} when reading dir ${absPath}`,
       );
     }
-    const res: FileNode[] = axiosRes.data.content.map(
-      ({ name, modified, size, is_dir, sign }) => {
+
+    const res: FileNode[] =
+      axiosRes.data.content?.map(({ name, modified, size, is_dir, sign }) => {
         if (!is_dir) {
           setAListSign(path_join(absPath, name), sign);
         }
@@ -98,8 +99,7 @@ export function AListControllerFactory(ctx: ControllerCtx): IProxyController {
           timestamp: dayjs(modified).unix(),
           isDir: is_dir,
         };
-      },
-    );
+      }) ?? [];
     return new Ok(res);
   }
   async function fetchFile(
