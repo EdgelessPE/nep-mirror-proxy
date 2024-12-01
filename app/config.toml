@@ -28,4 +28,4 @@ rootUrl = "https://zfile.edgeless.top"
 wild_gaps = []
 
 [dir]
-meta_cache = "meta"
+meta_cache = "D:/Desktop/Projects/EdgelessPE/edgeless-bot/meta"

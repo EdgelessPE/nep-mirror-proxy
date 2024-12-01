@@ -1,4 +1,5 @@
 import { Config } from "@/config/type";
+import { MetaResult } from "@/types/ept/MetaResult";
 
 export type Locale = "zh-CN" | "en-US" | "Multi";
 export type ServiceKeys = "HELLO" | "EPT_TOOLCHAIN" | "PKG_SOFTWARE";
@@ -56,4 +57,5 @@ export interface MirrorPkgSoftwareRelease {
   size: number;
   timestamp: number;
   version?: string;
+  meta?: MetaResult;
 }

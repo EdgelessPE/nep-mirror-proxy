@@ -41,6 +41,7 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     curly: "error",
+    "prefer-template": "error",
   },
   ignorePatterns: ["**/*.css", "**/*.jpg", "**/*.png"],
 };
