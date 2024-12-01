@@ -1,4 +1,4 @@
-import { Config } from "./config/type";
+import { Config } from "@/config/type";
 
 export type Locale = "zh-CN" | "en-US" | "Multi";
 export type ServiceKeys = "HELLO" | "EPT_TOOLCHAIN" | "PKG_SOFTWARE";

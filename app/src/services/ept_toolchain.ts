@@ -1,5 +1,5 @@
 import { Err, Ok, Result } from "ts-results";
-import { MirrorEptToolchain, MirrorEptToolchainRelease } from "@/type";
+import { MirrorEptToolchain, MirrorEptToolchainRelease } from "@/types";
 import { config } from "@/config";
 import { createController } from "@/proxies";
 import { path_join } from "@/utils";

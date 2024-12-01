@@ -1,5 +1,5 @@
 import { Result } from "ts-results";
-import { MirrorPkgSoftware } from "@/type";
+import { MirrorPkgSoftware } from "@/types";
 import { fetchPkgSoftware } from "./data";
 
 export let softwareCache: {

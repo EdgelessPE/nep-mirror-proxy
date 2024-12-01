@@ -1,4 +1,4 @@
-import { MirrorHello } from "@/type";
+import { MirrorHello } from "@/types";
 
 export type Config = MirrorHello & {
   proxy: {

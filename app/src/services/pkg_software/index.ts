@@ -1,5 +1,5 @@
 import { Err, Result } from "ts-results";
-import { MirrorPkgSoftware } from "@/type";
+import { MirrorPkgSoftware } from "@/types";
 import { CACHE_INTERVAL } from "@/constants";
 import { softwareCache, updateCache, wait } from "./cache";
 

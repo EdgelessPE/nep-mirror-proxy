@@ -1,4 +1,4 @@
-import { MirrorHello, ServiceKeys } from "@/type";
+import { MirrorHello, ServiceKeys } from "@/types";
 import { Ok, Result } from "ts-results";
 import { config } from "@/config";
 import { API_EPT_TOOLCHAIN, API_HELLO, API_PKG_SOFTWARE } from "@/constants";
