@@ -4,7 +4,11 @@ import fs from "fs";
 import TOML from "@iarna/toml";
 import Ajv from "ajv";
 
-const CONFIG_NAME = "config.toml";
+const CONFIG_NAME = (() => {
+  return fs.existsSync("config.local.toml")
+    ? "config.local.toml"
+    : "config.toml";
+})();
 const ajv = new Ajv();
 
 function readConfig(): Result<Config, string> {
