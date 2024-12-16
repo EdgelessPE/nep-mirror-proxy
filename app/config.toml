@@ -11,7 +11,7 @@ service = [
     # path 表示在 AList 中的包存放起始路径
     { key = "PKG_SOFTWARE", path = "/nep" },
     # path 表示在 AList 中的构建存放起始路径
-    { key = "EPT_TOOLCHAIN", path = "/ept_builds" },
+    { key = "EPT_TOOLCHAIN", path = "/ept" },
 ]
 
 [property]
