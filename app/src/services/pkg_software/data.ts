@@ -53,6 +53,7 @@ export async function fetchPkgSoftware(): Promise<
               scope,
               softwareName,
               fileName: file.name,
+              controller,
             });
             res({
               file_name: file.name,
