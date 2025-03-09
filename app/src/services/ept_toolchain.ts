@@ -6,6 +6,8 @@ import { path_join } from "@/utils";
 import { CACHE_INTERVAL, REDIRECT_ROUTE_PATH } from "@/constants";
 import semver from "semver";
 
+const REGEX = /^ept-([0-9.]+)([\w-]+)?\.zip$/;
+
 let cache: Result<MirrorEptToolchain, string> | null = null;
 let queueCallbacks: (() => void)[] = [];
 
@@ -32,14 +34,15 @@ async function fetchEptToolchain(): Promise<
     return readRes;
   }
   const releases: MirrorEptToolchainRelease[] = readRes.val
-    .filter((n) => n.name.match(/^ept_[0-9.]+\.zip$/))
+    .filter((n) => REGEX.test(n.name))
     .map(
       ({ name, size, timestamp }): MirrorEptToolchainRelease => ({
         name,
-        version: name.slice(4, -4),
-        url:
-          path_join(config.root_url, REDIRECT_ROUTE_PATH) +
-          `?path=${basePath}/${name}`,
+        version: name.match(REGEX)?.[1] ?? "",
+        url: `${path_join(
+          config.root_url,
+          REDIRECT_ROUTE_PATH,
+        )}?path=${basePath}/${name}`,
         size,
         timestamp,
       }),
