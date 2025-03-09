@@ -37,7 +37,7 @@ export async function getMeta({
         `Info: Downloading meta from proxy : ${res.val} to ${metaFilePath}`,
       );
       const downloader = new Downloader({
-        url: res.val,
+        url: encodeURI(res.val),
         directory: join(config.dir.meta_cache, scope, softwareName),
         fileName: `${fileName}.meta`,
       });
